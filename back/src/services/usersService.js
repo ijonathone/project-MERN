@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const {createOrder} = require("../services/orderService")
 
 module.exports = {
   getUsers: async () => {
@@ -7,7 +8,7 @@ module.exports = {
   },
 
   getUserById: async (id) =>{
-    const user = await User.findById(id);
+    const user = await User.findById(id).populate("orders");
     return user
   },
 
@@ -22,10 +23,24 @@ module.exports = {
     return newUser;
   },
 
-  addVehicle: async ({userId, vehicleId})=> {
+  addOrder: async (data)=> {
+    const {
+      userId,
+      dateOfRequest,
+      dateOfDelivery,
+      customer,
+      description,
+    } = data;
     const user = await User.findById(userId);
-    user.vehicle = vehicleId;
+    const order = await createOrder({
+      dateOfRequest,
+      dateOfDelivery,
+      customer,
+      description,
+    });
+    user.orders.push(order);
     await user.save();
     return user;
+   
   },
 };

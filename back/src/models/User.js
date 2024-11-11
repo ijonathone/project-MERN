@@ -3,11 +3,11 @@ const mongoose = require("mongoose");
 const userSchema = new mongoose.Schema({
     name: String,
     email: String,
-    age: Number,
-    vehicle: {
+    password: String,
+    orders: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Vehicle",
-    },
+        ref: "Order",
+    }],
 });
 
 const User = mongoose.model("User", userSchema);
