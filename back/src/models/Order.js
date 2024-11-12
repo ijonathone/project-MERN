@@ -5,6 +5,14 @@ const orderSchema = new mongoose.Schema({
     dateOfDelivery: String,
     customer: String,
     description: String,
+    status: {
+        type: Boolean,
+        default: true,
+    },
+    isDeleted: {
+        type: Boolean,
+        default: false,
+    },
 
 });
 

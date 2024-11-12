@@ -28,14 +28,14 @@ const addOrder = async (req, res) => {
     customer,
     description,
   } = req.body;
-  await usersService.addOrder({
+  const newOrder = await usersService.addOrder({
     userId,
     dateOfRequest,
     dateOfDelivery,
     customer,
     description,
   });
-  res.status(200).json({ message: "Orden creada" });
+  res.status(200).json(newOrder);
 };
 module.exports = {
   getAllUsers: catchAsync(getAllUsers),

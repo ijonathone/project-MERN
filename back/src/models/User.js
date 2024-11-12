@@ -1,9 +1,24 @@
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
-    name: String,
-    email: String,
-    password: String,
+    name: {
+        type: String,
+        required: true,
+    },
+    email: {
+        type: String,
+        unique: true,
+        required: true,
+    },
+    password: {
+        type: String,
+        required: true,
+    },
+    isLogged:{
+        type: String,
+        default: false,
+    },
+    
     orders: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Order",
