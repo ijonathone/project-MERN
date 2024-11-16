@@ -1,21 +1,15 @@
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import {useState} from 'react'
+import Example from "./components/Example";
 
-function App(){
-const [name, setName] = useState('Jonathan');
-console.log (name);
-
-const changeName = () => {
-  if (name === "Jonathan" setName "Dario")
-}
-  
-
-
-
+function App() {
   return (
     <>
-      <h1> Hola, soy {name}</h1>
-      <button onClick={changeName}>Cambiar</button>
+      <Routes>
+        <Route path="/" element=<Example />>
+         
+        </Route>
+      </Routes>
     </>
   );
 }
